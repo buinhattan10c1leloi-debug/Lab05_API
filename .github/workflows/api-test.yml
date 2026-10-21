@@ -23,7 +23,7 @@ jobs:
         env:
           GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
         run: |
-          newman run "TÊN_FILE_COLLECTION_CỦA_BẠN.json" \
-            -e "TÊN_FILE_ENVIRONMENT_CỦA_BẠN.json" \
+          newman run "2474802017151_BuiHungNhatTan_GoRest.postman_collection.json" \
+            -e "2474802017151_BuiHungNhatTan_GoRest.postman_environment.json" \
             -d users.csv \
             --env-var "token=$GOREST_TOKEN"
