@@ -1,0 +1,25 @@
+name: Hourly API Monitor
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  monitor-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Monitor Folder
+        env:
+          GOREST_TOKEN: ${{ secrets.GOREST_TOKEN }}
+        run: |
+          newman run "2474802017151_BuiHungNhatTan_GoRest.postman_collection.json" \
+            -e "2474802017151_BuiHungNhatTan_GoRest.postman_environment.json" \
+            --folder "Production_Monitor_Demo" \
+            --env-var "token=$GOREST_TOKEN"
